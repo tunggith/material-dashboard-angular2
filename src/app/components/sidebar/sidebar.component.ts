@@ -8,14 +8,13 @@ declare interface RouteInfo {
     class: string;
 }
 export const ROUTES: RouteInfo[] = [
-    { path: '/dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: '/user-profile', title: 'User Profile',  icon:'person', class: '' },
-    { path: '/table-list', title: 'Table List',  icon:'content_paste', class: '' },
-    { path: '/typography', title: 'Typography',  icon:'library_books', class: '' },
-    { path: '/icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: '/maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: '/notifications', title: 'Notifications',  icon:'notifications', class: '' },
-    { path: '/upgrade', title: 'Upgrade to PRO',  icon:'unarchive', class: 'active-pro' },
+    { path: '/dashboard', title: 'Bán Hàng',  icon: 'shopping_cart', class: '' },
+    { path: '/user-profile', title: 'Sản phẩm',  icon:'inventory_2', class: '' },
+    { path: '/table-list', title: 'Hóa đơn',  icon:'content_paste', class: '' },
+    { path: '/typography', title: 'Thống kê',  icon:'query_stats', class: '' },
+    { path: '/icons', title: 'Khuyến mãi',  icon:'confirmation_number', class: '' },
+    { path: '/maps', title: 'Nhân viên',  icon:'person', class: '' },
+    { path: '/notifications', title: 'Khách hàng',  icon:'groups', class: '' },
 ];
 
 @Component({
