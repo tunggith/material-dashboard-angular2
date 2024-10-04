@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
-import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { BanHangComponent } from '../../ban-hang/./ban-hang.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
@@ -32,7 +32,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatTooltipModule,
   ],
   declarations: [
-    DashboardComponent,
+    BanHangComponent,
     UserProfileComponent,
     TableListComponent,
     TypographyComponent,

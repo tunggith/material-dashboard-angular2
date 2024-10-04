@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { DashboardComponent } from '../../dashboard/dashboard.component';
+import { BanHangComponent } from '../../ban-hang/./ban-hang.component';
 import { UserProfileComponent } from '../../user-profile/user-profile.component';
 import { TableListComponent } from '../../table-list/table-list.component';
 import { TypographyComponent } from '../../typography/typography.component';
@@ -14,7 +14,7 @@ export const AdminLayoutRoutes: Routes = [
     //   path: '',
     //   children: [ {
     //     path: 'dashboard',
-    //     component: DashboardComponent
+    //     component: BanHangComponent
     // }]}, {
     // path: '',
     // children: [ {
@@ -52,7 +52,7 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
-    { path: 'dashboard',      component: DashboardComponent },
+    { path: 'ban-hang',      component: BanHangComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },

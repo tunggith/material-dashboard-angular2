@@ -1,0 +1,191 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="hoa-don-create">
+                <div class="tab">
+                    <a href="#" class="active">Tạo mới</a>
+                    <a href="#">Danh sách hóa đơn</a>
+                </div>
+                <div class="craete-invoice">
+                    <div class="create-order">
+                        <i class="material-icons">add</i>
+                        <a (click)="createHoaDon()">Tạo hóa đơn</a>
+                    </div>
+                    <div class="create-client">
+                        <i class="material-icons">person_add</i>
+                        <a>Chọn khách hàng</a>
+                    </div>
+                    <div class="profile-client">
+                        <span>Tên khách hàng:{{tenKhachHang}}</span>
+                    </div>
+                </div>
+                <div class="order-list" id="order-list" *ngIf="checkHoaDon;else dataHoaDon">
+                    <i class="material-icons">error</i>
+                </div>
+                <ng-template #dataHoaDon>
+                    <div class="order-item" *ngFor="let hoaDon of hoaDon"
+                        [ngClass]="{'active':hoaDon.id==activeInvoidID}">
+                        <button (click)="getChiTietHoaDon(hoaDon.id)">{{hoaDon.ma}}</button>
+                        <span class="close" (click)="removeHoaDon(hoaDon.id)">x</span>
+                    </div>
+                </ng-template>
+                <div class="cart">
+                    <div *ngIf="hasError; else dataTable">
+                        <i class="material-icons">production_quantity_limits</i>
+                        <p>Chưa có sản phẩm</p>
+                    </div>
+                </div>
+                <ng-template #dataTable>
+                    <table class="table table-hover">
+                        <thead class="text-dark">
+                            <th>Stt</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Xuất xứ</th>
+                            <th>Thương hiệu</th>
+                            <th>Màu sắc</th>
+                            <th>Giới Tính</th>
+                            <th>Size</th>
+                            <th>Số lượng</th>
+                            <th>Tổng tiền</th>
+                            <th>Hành động</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cthd of chitietHoaDon, let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{cthd.chiTietSanPham?.ten}}</td>
+                                <td>{{cthd.chiTietSanPham?.sanPham?.xuatXu?.ten}}</td>
+                                <td>{{cthd.chiTietSanPham?.sanPham?.thuongHieu?.ten}}</td>
+                                <td>{{cthd.chiTietSanPham?.mauSac?.ten}}</td>
+                                <td>{{cthd.chiTietSanPham?.sanPham?.theLoai?.ten}}</td>
+                                <td>{{cthd.chiTietSanPham?.size?.ten}}</td>
+                                <td>
+                                    <div class="input-group mb-3">
+                                        <button class="input-group-text"><i class="material-icons"
+                                                (click)="decreaseQuantity(cthd.id)">remove</i></button>
+                                        <input type="text" class="form-control" [value]="cthd.soLuong" disabled>
+                                        <button class="input-group-text"><i class="material-icons"
+                                                (click)="increaseQuantity(cthd.chiTietSanPham?.id)">add</i></button>
+                                    </div>
+                                </td>
+                                <td>{{cthd.giaSpctHienTai | currency:'VND'}}</td>
+                                <td><button class="select-invoice"><i class="material-icons"
+                                            (click)="removeHoaDonChiTiet(cthd.id)">delete_forever</i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ng-template>
+                <div class="profile-pay">
+                    <div class="thanh-toan">
+                        <div class="cash">
+                            <div>
+                                <span>Tổng tiền: {{tongTienBanDau | currency:'VND'}}</span>
+                            </div>
+                            <div style="display: flex;">
+                                <div>
+                                    <span>Tiền khách đưa: </span>
+                                    <input type="text" class="cash-client" [(ngModel)]="tienKhachDua"
+                                        (input)="getTienTraLai(tienKhachDua)"
+                                        [ngClass]="{'error-border': tienKhachDua < tongTienSauVoucher || tienKhachDuaInvalid}">
+                                </div>
+                                <div *ngIf="tienKhachDua < tongTienSauVoucher">
+                                    <span class="error-text">Số tiền khách đưa không đủ!</span>
+                                </div>
+                                <div *ngIf="tienKhachDuaInvalid">
+                                    <span class="error-text">Dữ liệu không hợp lệ!</span>
+                                </div>
+                            </div>  
+                            <div>
+                                <span>Tổng tiền phải thanh toán: {{tongTienSauVoucher | currency:'VND'}}</span>
+                            </div>
+                            <div>
+                                <span>tiền trả lại: {{tienTraLai}}</span>
+                            </div>
+                            <div class="payment">
+                                <button (click)="thanhtoanHoaDon(activeInvoidID)"><i
+                                        class="material-icons">payments</i>Thanh toán</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voucher">
+                        <select class="form-select" (change)="getIdThanhToan($event.target.value)">
+                            <option selected disabled>---chọn phương thức thanh toán</option>
+                            <option *ngFor="let phuongThuc of phuongThucThanhToan" [value]="phuongThuc.id" >
+                                {{phuongThuc.tenPhuongThuc}}</option>
+                        </select>
+                        <div class="giao-hang">
+                            <span>Giao hàng: <i class="material-icons toggle-icon"
+                                    [ngStyle]="{ color: icon === 'toggle_off' ? 'gray' : 'green' }"
+                                    (click)="toggleIcon()">
+                                    {{ icon }}
+                                </i></span>
+                        </div>
+                        <div class="combo-box">
+                            <input type="text" id="comboInput" list="options" placeholder="Nhập hoặc chọn voucher..."
+                                (input)="onInputChange($event)" />
+                            <datalist id="options">
+                                <option *ngFor="let voucher of voucher" [value]="voucher.ten"
+                                    [attr.data-id]="voucher.id"></option>
+                            </datalist>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-warning">
+                        <h4 class="card-title">Sản phẩm</h4>
+                        <input type="text" placeholder="Nhập tên sản phẩm hoặc mã..." [(ngModel)]="searchTerm"
+                            (input)="searchProduct()">
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table table-hover">
+                            <thead class="text-warning">
+                                <th>Stt</th>
+                                <th>Mã</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Xuất xứ</th>
+                                <th>Thương hiệu</th>
+                                <th>Màu sắc</th>
+                                <th>Giới Tính</th>
+                                <th>Size</th>
+                                <th>số lượng</th>
+                                <th>Đơn giá</th>
+                                <th>Thao tác</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let ctsp of product, let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{ctsp.ma}}</td>
+                                    <td>{{ctsp.ten}}</td>
+                                    <td>{{ctsp.san_pham?.xuatXu?.ten}}</td>
+                                    <td>{{ctsp.san_pham?.thuongHieu?.ten}}</td>
+                                    <td>{{ctsp.mauSac}}</td>
+                                    <td>{{ctsp.san_pham?.theLoai?.ten}}</td>
+                                    <td>{{ctsp.size}}</td>
+                                    <td>{{ctsp.soLuong}}</td>
+                                    <td>{{ctsp.donGia | currency:'VND'}}</td>
+                                    <td><button class="select-product" (click)="selectProduct(ctsp.id)">
+                                            <i class="material-icons">add_shopping_cart</i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <button (click)="getSanPham(pagination.pageNumber - 1)"
+                            [disabled]="pagination.pageNumber === 0">
+                            <i class="material-icons">arrow_back_ios</i>
+                        </button>
+                        <span>Page {{pagination.pageNumber + 1}} of {{pagination.totalPage}}</span>
+                        <button (click)="getSanPham(pagination.pageNumber + 1)"
+                            [disabled]="pagination.pageNumber === pagination.totalPage - 1">
+                            <i class="material-icons">arrow_forward_ios</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,342 @@
+/* Mặc định cho màn hình lớn hơn (desktop) */
+.hoa-don-create {
+    width: 100%;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+.tab {
+    display: flex;
+    gap: 20px;
+    border-bottom: 2px solid #e0e0e0;
+}
+.tab a {
+    text-decoration: none;
+    padding: 10px;
+    color: #000;
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
+}
+.tab a.active {
+    color: #3498db;
+    border-bottom: 3px solid #3498db;
+}
+.create-order {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    background-color: #f44336;
+    border: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.create-order:hover {
+    background-color: #e66158;
+}
+.craete-invoice {
+    display: flex;
+}
+.create-client {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    margin-left: 10px;
+    background-color: #91ec70;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.create-client button:hover {
+    background-color: #9bdc83;
+}
+.profile-client {
+    justify-content: space-between;
+    margin: 20px 0;
+    margin-left: 500px;
+    padding: 10px 20px;
+}
+.order-list {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.order-list i{
+    font-size: 100px;
+    text-align: center;
+    margin-left: 45%;
+    color: grey;
+}
+.order-item {
+    position: relative;
+    display: inline-block;
+    padding-right: 5px;
+    border: 0.5px solid rgb(195, 193, 193);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 120px;
+    height: 30px;
+}
+.order-item.active {
+    border-bottom: none;
+}
+.order-item.active button {
+    color: #3498db;
+}
+.order-item button {
+    border-top-left-radius: 10px;
+    border: none;
+    background-color: #ffff;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+.order-item .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: gray;
+    padding: 3px 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.order-details {
+    margin-bottom: 20px;
+}
+.order-details h2 {
+    font-size: 20px;
+}
+.actions {
+    display: flex;
+    gap: 15px;
+}
+.actions button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.actions .add-product {
+    background-color: #f1c40f;
+    color: #fff;
+}
+.actions .qr-code {
+    background-color: #27ae60;
+    color: #fff;
+}
+.cart {
+    padding: 20px;
+    border-bottom: 0.5px solid rgb(193, 174, 174);
+    text-align: center;
+}
+.cart i {
+    font-size: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+.cart p {
+    color: #7f8c8d;
+}
+.cash {
+    margin-left: 20px;
+    margin-bottom: 10px;
+    height: 55px;
+}
+.payment button {
+    border: none;
+    background-color: rgb(96, 213, 96);
+    border-radius: 10px;
+    color: #ffff;
+    cursor: pointer;
+}
+.payment button:hover {
+    background-color: rgb(59, 177, 59);
+}
+.profile-pay {
+    display: flex;
+    height: 150px;
+}
+.voucher {
+    width: 50%;
+    text-align: center;
+    margin-top: 20px;
+    padding-left: 0;
+}
+.voucher input {
+    margin-left: 10px;
+    border: 0.5px solid gray;
+    border-radius: 10px;
+    height: 30px;
+}
+.voucher button {
+    height: 30px;
+    border: none;
+    background-color: #91e658;
+    border-radius: 40%;
+    margin-left: 10px;
+}
+.voucher button i {
+    justify-content: center;
+    color: #fff;
+}
+.voucher select{
+    width: 250px;
+    height: 30px;
+    border: 0.5px solid gray;
+    border-radius: 10px;
+    margin-left: -17px;
+}
+.cash-client {
+    border: none;
+    width: 200px;
+    border-bottom: 0.3px solid gray;
+}
+.card-header{
+    display: flex;
+}
+.card-header input{
+    border-radius: 10px;
+    border: 0.5px solid gainsboro;
+    background-color: rgb(214, 206, 206);
+    margin-left: 70%;
+    width: 200px;
+}
+.select-product{
+    border: none;
+    background-color: #ffff;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.select-product button:hover{
+    color: rgba(0, 0, 0, 0.075);
+}
+.select-product i:hover{
+    font-size: 30px;
+}
+.select-invoice{
+    border: none;
+    background-color: #ffff;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+}
+.select-invoice i{
+    font-size: 20px;
+}
+.select-invoice i:hover{
+    font-size: 25px;
+}
+.pagination{
+    justify-content: center;
+}
+.pagination button{
+    border: none;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    padding: 0 5px;
+}
+.pagination button i:hover{
+    font-size: 25px;
+    color: gray;
+}
+.thanh-toan{
+    width: 50%;
+}
+.error-border {
+    border-bottom: 1px solid red;
+    background-color: #ffe6e6;
+}
+
+.error-text {
+    color: red;
+    font-size: 12px;
+}
+.combo-box {
+    margin: 20px -10px;
+    width: 100%;
+}
+input {
+    padding: 5px;
+    width: 250px;
+}
+datalist {
+    display: none; /* Ẩn datalist mặc định */
+}
+.form-control{
+    width: 30px;
+}
+.input-group button i{
+    font-size: 15px;
+}
+.input-group button i:hover{
+    font-size: 20px;
+}
+.material-icons {
+    cursor: pointer;
+}
+.giao-hang{
+    margin-left: 173px;
+    margin-top: 10px;
+}
+.giao-hang span{
+    display: flex;
+}
+.giao-hang i {
+    margin-left: 10px;
+    font-size: 30px;
+    background-color: #ffff;
+}
+
+/* Media Queries cho màn hình điện thoại */
+@media (max-width: 768px) {
+    .tab {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .create-order, .create-client {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .profile-client {
+        width: 100%;
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .order-list {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .order-item {
+        width: 100%;
+        text-align: center;
+    }
+
+    .profile-pay {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .payment button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
